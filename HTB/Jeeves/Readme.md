@@ -101,3 +101,11 @@ Podemos ver que hay un ADS y leerlo usando el comando `more`.
 ![root_flag](image-1.png)
 
 ## Conclusión
+
+Skills: 
+
+Jenkins Exploitation (Groovy Script Console)
+
+PassTheHash (Psexec) 
+
+Breaking KeePass Alternate Data Streams (ADS)
