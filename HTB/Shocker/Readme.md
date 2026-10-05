@@ -12,13 +12,17 @@
 
 Lo primero que hice fue hacer un ping a la máquina para comprobar si estaba activa.
 
-``ping -c 1 <ip>``
+```bash
+ping -c 1 <IP>
+```
 
 La respuesta mostraba un TTL de 63, lo que indicaba que se trataba de una máquina Linux.
 
 Una vez verificado que estaba activa, lancé un escaneo completo con Nmap para identificar los puertos abiertos.
 
-``sudo nmap -p- --min-rate 5000 -sS -oG ports <ip>``
+```bash
+sudo nmap -p- --min-rate 5000 -sS -oG ports <IP>
+```
 
 Me gusta guardar el resultado en formato `-oG` por si más adelante necesito revisar de nuevo qué puertos estaban abiertos.
 
@@ -26,7 +30,9 @@ Me gusta guardar el resultado en formato `-oG` por si más adelante necesito rev
 
 Para obtener más información sobre los servicios, lancé otro escaneo con detección de versiones y scripts por defecto.
 
-``nmap -sCV -p80,2222 10.129.48.127``
+```bash
+nmap -sCV -p80,2222 <IP>
+```
 
 ![services_versions](image-1.png)
 
@@ -48,7 +54,9 @@ Cuando vemos CGI o algo similar, debemos pensar en un posible ataque de **Shells
 
 Para comprobar si el servicio era vulnerable, utilicé el script correspondiente de Nmap. Es importante indicar la ruta completa al script CGI, ya que si no, no lo detecta correctamente.
 
-``nmap --script http-shellshock --script-args uri=/cgi-bin/user.sh -p80 10.129.48.127``
+```bash
+nmap --script http-shellshock --script-args uri=/cgi-bin/user.sh -p80 <IP>
+```
 
 ![shellshock](image-6.png)
 

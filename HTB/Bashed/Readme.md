@@ -19,25 +19,29 @@ Al enumerar puertos abiertos solo encontramos el puerto 80.
 
 ## Gaining Access
 
-Para ver por donde podía ganar acceso, use gobuster para ver si encontraba más direcciones. 
+Para ver por dónde podía ganar acceso, usé Gobuster para comprobar si encontraba más rutas.
 
- `gobuster dir -u http://10.129.49.206/ -w /usr/share/SecLists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt`
+```bash
+gobuster dir -u http://<IP>/ -w /usr/share/SecLists/Discovery/Web-Content/DirBuster-2007_directory-list-2.3-medium.txt
+```
 
 ![gobuster](image-1.png)
 
-/dev contenía lo que buscabamos. Un archivo .php que al abrirlo nos devolvía una bash en el propio navegador. Simplemente apliqué reverse shell para pasarmela a mi máquina y poder trabajar más cómodo.
+`/dev` contenía lo que buscábamos: un archivo `.php` que, al abrirlo, nos devolvía una bash en el propio navegador. Simplemente apliqué una reverse shell para pasarla a mi máquina y trabajar más cómodamente.
 
 ![bash](image-2.png)
 
 ## Privilege Escalation
 
-Para convertirnos en el usuario scriptmanager, apliqué el comando sudo -u scriptmanager /bin/bash ya que www-data podía correr cualquier comando siendo scriptmanager. 
+Para convertirnos en el usuario `scriptmanager`, apliqué el comando `sudo -u scriptmanager /bin/bash`, ya que `www-data` podía ejecutar cualquier comando como `scriptmanager`.
 
 ![scriptmanager](image-3.png)
 
 Para convertirme en root si que me costó un poco más. Tuvé que ir buscando por los directorios en busca de alguna pista. Finalmente, lo que me sirvió en lugar de ir buscando uno a uno, fué lo siguiente: 
 
-`find / -user scriptmanager 2>/dev/null | grep -v "proc" `
+```bash
+find / -user scriptmanager 2>/dev/null | grep -v "proc"
+```
 
 Esto lo que hace es buscar archivos cuyo propietario sea scriptmanager y eliminar cualquier línea que contenga la palabra proc ( no nos interesa en este filtrado )
 
