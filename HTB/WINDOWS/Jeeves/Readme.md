@@ -29,7 +29,7 @@ Desde aquí vamos a conseguir acceso a la shell.
 
 ## Acceso inicial
 
-Para acceder a la shell, tendremos que ponernos en escucha desde nuestra máquina atacante y, a continuacion, ejecutar el siguiente código que hemos encontrado en github sobre reverse shell en jenkins. Se trata de Groovy script:
+Para acceder a la shell, tendremos que ponernos en escucha desde nuestra máquina atacante y, a continuación, ejecutar el siguiente código que hemos encontrado en GitHub sobre una reverse shell en Jenkins. Se trata de un script de Groovy:
 
 ![groovy](image-7.png)
 
@@ -106,6 +106,6 @@ Skills:
 
 Jenkins Exploitation (Groovy Script Console)
 
-PassTheHash (Psexec) 
+Pass the Hash (PsExec)
 
 Breaking KeePass Alternate Data Streams (ADS)
